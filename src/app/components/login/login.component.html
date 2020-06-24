@@ -1,0 +1,58 @@
+<div class="page-container">
+
+  <!-- header -->
+  <div class="header">
+    <div class="h4 mb-15">Hi there,</div>
+    <div class="paragraph-small text-medium">
+      Welcome to the drDoctor Demo app!
+    </div>
+  </div>
+
+  <form #form="ngForm" class="content">
+
+    <!-- lastname input -->
+    <form-field>
+      <input inputRef name="lastname" #lastNameInput="ngModel" placeholder="Last Name" [(ngModel)]="model.lastName"
+        required restrict="text" max="50" aria-labelledby="lastname-label" aria-required="true" />
+      <div error>
+        <p *ngIf="lastNameInput?.errors?.required">this field is required</p>
+        <p *ngIf="lastNameInput?.errors?.max">
+          this field must have less than 50 characters
+        </p>
+      </div>
+    </form-field>
+
+    <!-- birth date input -->
+    <form-field>
+      <input inputRef #birthDateInput="ngModel" name="birthDate" placeholder="Date of Birth"
+        [(ngModel)]="model.birthDate" required datePicker autocomplete="off" #startDate="datePicker"
+        aria-labelledby="birthDate-label" aria-required="true" />
+      <div error>
+        <p *ngIf="birthDateInput?.errors?.required">this field is required</p>
+        <p *ngIf="birthDateInput?.errors?.invalid">
+          this field must be a valid date
+        </p>
+      </div>
+      <i suffix class="icon-calendar" (click)="startDate.toggle()"></i>
+    </form-field>
+
+    <!-- post code input -->
+    <form-field>
+      <input inputRef name="postCode" #postCodeInput="ngModel" placeholder="Post Code" [(ngModel)]="model.postCode"
+        aria-labelledby="postCode-label" aria-required="true" required postcode />
+      <div error>
+        <p *ngIf="postCodeInput?.errors?.required">this field is required</p>
+        <p *ngIf="postCodeInput?.errors?.invalid">
+          this field must be a valid postcode
+        </p>
+      </div>
+    </form-field>
+
+    <!-- actions -->
+    <button class="btn primary text-white" (click)="continue()" [disabled]="form.invalid" [btnStatus]="loading"
+      loadingText="Searching...">
+      Continue <i class="icon-arrow-right"></i>
+    </button>
+  </form>
+
+</div>

@@ -1,0 +1,25 @@
+$colors: (
+  primary: rgb(113, 93, 235),
+  secondary: rgb(186, 161, 65),
+  danger: rgb(194, 5, 0),
+  light: rgba(251, 251, 252),
+  medium: rgba(200, 200, 200),
+  dark: rgba(28, 28, 28),
+  white: rgb(255, 255, 255),
+);
+
+@each $name, $color in $colors {
+  @if type-of($color) != "map" {
+    .text-#{$name} {
+      color: $color;
+    }
+
+    .bg-#{$name} {
+      background-color: $color;
+    }
+
+    .border-#{$name} {
+      border-color: $color;
+    }
+  }
+}

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./theme/variables";
+@import "./theme/color";
+@import "./theme/font";
+@import "./theme/button";
+@import "./theme/common";
+
+@import "./theme/components/form-field.component.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  @extend .bg-light;
+}

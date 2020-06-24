@@ -1,0 +1,43 @@
+<div class="page-container">
+
+  <!-- header -->
+  <div class="header">
+    <div class="h4 mb-5">We've found you,</div>
+    <div class="h4 mb-15"> Mr. {{user.lastName}}</div>
+    <div class="paragraph-small text-medium">
+      Give us more details, we won't spam you 😁.
+    </div>
+  </div>
+
+  <form #form="ngForm" class="content">
+
+    <!-- email input -->
+    <form-field>
+      <input inputRef name="email" #emailInput="ngModel" placeholder="Email" [(ngModel)]="model.email" required email
+        aria-labelledby="email-label" aria-required="true">
+      <div error>
+        <p *ngIf="emailInput?.errors?.required">this field is required</p>
+        <p *ngIf="emailInput?.errors?.email">this field must be a valid email</p>
+      </div>
+    </form-field>
+
+    <!-- mobile input -->
+    <app-phone-input name="mobile" placeholder="Mobile Number" [(ngModel)]="model.mobile" required="true"
+      aria-labelledby="mobile-label" aria-required="true">
+    </app-phone-input>
+
+    <!-- phone input -->
+    <app-phone-input name="phone" placeholder="Phone Number" [(ngModel)]="model.phone" aria-labelledby="phone-label">
+    </app-phone-input>
+
+
+    <!-- actions -->
+    <button class="btn secondary outline mr-20" (click)="back()">
+      <i class="icon-arrow-left"></i> Back
+    </button>
+
+    <button class="btn primary text-white" [disabled]="form.invalid" (click)="continue()">
+      Continue <i class="icon-arrow-right"></i>
+    </button>
+  </form>
+</div>

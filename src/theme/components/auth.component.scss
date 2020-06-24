@@ -1,0 +1,26 @@
+app-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  height: 100%;
+  margin: 0 auto;
+
+  & > .container {
+    width: 100%;
+    background-color: white;
+    border-radius: $border-radius;
+    box-shadow: $elevation;
+
+    & > img {
+      width: 140px;
+      margin: 40px auto 20px;
+      text-align: center;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      height: 100%;
+    }
+  }
+}

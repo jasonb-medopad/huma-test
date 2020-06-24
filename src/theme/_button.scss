@@ -1,0 +1,107 @@
+.btn {
+  padding: 10px 16px;
+  min-height: 44px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: $elevation;
+
+  &.icon {
+    width: 44px;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 100%;
+    @extend .paragraph;
+    &:hover,
+    &:active {
+      box-shadow: $elevation;
+    }
+  }
+
+  &:not(:disabled) {
+    @each $name, $color in $colors {
+      @if type-of($color) != "map" {
+        &.#{$name} {
+          &:not(.outline) {
+            background: $color;
+            &:hover,
+            &:active {
+              background: darken($color, 10);
+            }
+          }
+          &.outline {
+            border: 1px solid $color;
+            background: transparent;
+            color: $color;
+            &:active {
+              background: $color;
+              @extend .text-white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    @extend .bg-medium;
+  }
+}
+
+.spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+
+  .btn-loader & {
+    position: unset;
+    margin: 0 0 0 10px;
+    width: 20px;
+    height: 20px;
+
+    .path {
+      stroke: white;
+      stroke-linecap: round;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+  }
+
+  & .path {
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+}
+
+.btn-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
