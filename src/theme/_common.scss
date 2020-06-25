@@ -1,59 +1,29 @@
-.page-container {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: "header" "content";
-  row-gap: 30px;
-  padding: 30px;
-
-  & > .header {
-    grid-area: header;
-  }
-
-  & > .content {
-    grid-area: content;
+*:focus {
+  outline: none;
+}
+@media (max-width: 600px) {
+  .hidden-sm {
+    display: none;
   }
 }
 
-.error-bubble {
-  position: relative;
-  background: map-get($colors, danger);
-  border-radius: $border-radius;
-  padding: 10px;
-  color: map-get($colors, white);
+.text-right {
+  text-align: right;
+}
 
-  &:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border: 15px solid transparent;
-    border-right-color: map-get($colors, danger);
-    border-left: 0;
-    margin-top: -15px;
-    margin-left: -15px;
-  }
-
-  @media (max-width: 600px) {
-    &:after {
-      content: unset;
-      height: 100%;
+.row {
+  display: flex;
+  width: 100%;
+  &.form-group {
+    > * {
+      flex: 1;
     }
   }
-}
 
-.rounded-box {
-  width: 80px;
-  height: 80px;
-  border-radius: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: map-get($colors, medium);
-  background-color: map-get($colors, light);
-  border: 1px solid map-get($colors, medium);
-  & > i {
-    font-size: 28px;
+  &.align-center {
+    align-items: center;
+  }
+  &.space-between {
+    justify-content: space-between;
   }
 }

@@ -1,43 +1,159 @@
-<div class="page-container">
+<div class="header">
 
-  <!-- header -->
-  <div class="header">
-    <div class="h4 mb-5">We've found you,</div>
-    <div class="h4 mb-15"> Mr. {{user.lastName}}</div>
-    <div class="paragraph-small text-medium">
-      Give us more details, we won't spam you 😁.
+  <!-- user profile section 1 -->
+  <div class="profile_section">
+    <div class="row align-center space-between">
+      <h4 class="h6 mt-0 mb-0">{{user.fullName}}</h4>
+      <button custom-button color="medium" shape="round" size="default" fill="outline">
+        Continue monitoring <i class="ml-5 icon-arrow-down"></i>
+      </button>
+    </div>
+    <div class="d-flex mt-25">
+      <span class="mr-5 paragraph-small"> Set Priority</span>
+      <button class="mr-5" custom-button size="small" color="primary" shape="round" fill="raised">High</button>
+      <button custom-button size="small" color="medium" shape="round" fill="outline">Low</button>
+    </div>
+
+    <div class="mt-35">
+      <button class="mr-5" custom-button size="small" color="medium" fill="flat">Smoker</button>
+      <button custom-button size="small" color="medium" fill="flat">Drinker</button>
     </div>
   </div>
 
-  <form #form="ngForm" class="content">
-
-    <!-- email input -->
-    <form-field>
-      <input inputRef name="email" #emailInput="ngModel" placeholder="Email" [(ngModel)]="model.email" required email
-        aria-labelledby="email-label" aria-required="true">
-      <div error>
-        <p *ngIf="emailInput?.errors?.required">this field is required</p>
-        <p *ngIf="emailInput?.errors?.email">this field must be a valid email</p>
+  <!-- user profile section 2 -->
+  <div class="profile_section">
+    <div class="row space-between">
+      <div class="profile-detail">
+        <p class="paragraph-small">DOB: {{user.birthDate}}</p>
+        <p class="paragraph-small">Consultant: Dr. Bea</p>
+        <p class="paragraph-small">NHS #: {{user.nhsNumber}}</p>
+        <p class="paragraph-small">Allergies: {{user.allergies.length > 0 ? user.allergies : 'N/A'}}</p>
+        <p class="paragraph-small">Drug Hx: {{user.drugs.length > 0 ? user.drugs: 'XXXX'}}</p>
       </div>
-    </form-field>
+      <div class="profile-actions text-right">
+        <button class="mr-10" custom-button size="small" color="primary" shape="round" fill="raised">
+          <i class="icon-phone mr-5"></i> Call
+        </button>
+        <button custom-button size="small" color="primary" shape="round" fill="raised">
+          <i class="icon-list mr-5"></i> Note
+        </button>
 
-    <!-- mobile input -->
-    <app-phone-input name="mobile" placeholder="Mobile Number" [(ngModel)]="model.mobile" required="true"
-      aria-labelledby="mobile-label" aria-required="true">
-    </app-phone-input>
+        <p class="paragraph bold mt-30">Last Contact (23/03/20)</p>
+        <p class="paragraph bold">Dr. Kay Chalson</p>
+        <button custom-button color="medium" size="small" fill="outline" shape="round">See Notes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- phone input -->
-    <app-phone-input name="phone" placeholder="Phone Number" [(ngModel)]="model.phone" aria-labelledby="phone-label">
-    </app-phone-input>
+<!-- content grid -->
+<div class="content">
 
+  <!-- panel 1 general info -->
+  <div class="panel">
+    <div class="panel__header">
+      <span class="h6">General</span>
+      <button iconButton="true" custom-button color="primary" fill="text"> <i class="icon-options"></i></button>
+    </div>
+    <div class="panel__content">
+      <div class="row align-center form-group">
+        <p class="mr-15 paragraph-small">Gender:</p>
+        <form-field mode="md">
+          <input inputRef name="gender" [(ngModel)]="user.gender" />
+        </form-field>
+      </div>
+      <div class="row align-center form-group">
+        <p class="mr-15 paragraph-small">Date of Birth:</p>
+        <form-field mode="md">
+          <input inputRef name="birthDate" [(ngModel)]="user.birthDate" />
+        </form-field>
+      </div>
+      <div class="row align-center form-group">
+        <span class="mr-15 paragraph-small">Mobile No:</span>
+        <form-field mode="md">
+          <input inputRef name="tel" [(ngModel)]="user.tel" />
+        </form-field>
+      </div>
+      <div class="row align-center form-group">
+        <span class="mr-15 paragraph-small">Address: </span>
+        <form-field mode="md">
+          <input inputRef name="address" [(ngModel)]="user.address" />
+        </form-field>
+      </div>
+    </div>
+  </div>
 
-    <!-- actions -->
-    <button class="btn secondary outline mr-20" (click)="back()">
-      <i class="icon-arrow-left"></i> Back
-    </button>
+  <!-- panel 2 Assigned clinicians -->
+  <div class="panel">
+    <div class="panel__header">
+      <p class="h6">Assigned Clinicians</p>
+      <button iconButton="true" custom-button color="primary" fill="text"> <i class="icon-options"></i></button>
+    </div>
+    <div class="panel__content">
 
-    <button class="btn primary text-white" [disabled]="form.invalid" (click)="continue()">
-      Continue <i class="icon-arrow-right"></i>
-    </button>
-  </form>
+      <form-field mode="md" *ngFor="let item of doctors$ |async">
+        <span prefix class="paragraph-small">{{item.fullName}}</span>
+        <select inputRef name="gender" [(ngModel)]="item.roles">
+          <option value="admin">Admin</option>
+          <option value="read">Read</option>
+          <option value="write">Write</option>
+        </select>
+      </form-field>
+    </div>
+  </div>
+
+  <!-- panel 3 clinical history -->
+  <div class="panel">
+    <div class="panel__header">
+      <span class="h6">Climical History</span>
+      <button iconButton="true" custom-button color="primary" fill="text"> <i class="icon-options"></i></button>
+    </div>
+
+    <div class="panel__content">
+
+      <p prefix class="mb-10 paragraph-small"> Reason for monitoring:</p>
+      <form-field>
+        <input inputRef name="address" [(ngModel)]="extraData.reason" />
+      </form-field>
+
+      <div class="row align-center form-group">
+        <span class="mr-15  paragraph-small">Patient Enrolment date: </span>
+        <form-field mode="md">
+          <input inputRef name="address" placeholder="Add date" [(ngModel)]="extraData.date" />
+        </form-field>
+      </div>
+
+      <div class="row align-center form-group">
+        <span class="mr-15  paragraph-small">Patient health proxies: </span>
+        <form-field mode="md">
+          <input inputRef name="address" placeholder="Add contact" [(ngModel)]="extraData.contact" />
+        </form-field>
+      </div>
+
+      <div class="row align-center form-group">
+        <span class="mr-15  paragraph-small">Specialists assigned to patient: </span>
+        <form-field mode="md">
+          <input inputRef name="address" placeholder="Add specialist" [(ngModel)]="extraData.specialist" />
+        </form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- panel 4 surgery info -->
+  <div class="panel">
+    <div class="panel__header">
+      <span>Surgery</span>
+      <button iconButton="true" custom-button color="primary" fill="text"> <i class="icon-options"></i></button>
+    </div>
+
+    <div class="panel__content">
+
+      <div class="row align-center space-between">
+        <span class="mr-15  paragraph-small">Patient Enrolment date: </span>
+        <form-field mode="md">
+          <input inputRef name="address" placeholder="Add date" [(ngModel)]="extraData.date" />
+        </form-field>
+      </div>
+    </div>
+  </div>
 </div>

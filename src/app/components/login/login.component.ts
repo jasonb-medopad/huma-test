@@ -1,34 +1,29 @@
-import { Component, OnInit } from "@angular/core";
-import { routes } from "@shared/helpers/routes";
-import { SharedService } from "@shared/services/shared.service";
+import { Component } from '@angular/core';
+import { routes } from '@shared/helpers/routes';
+import { SharedService } from '@shared/services/shared.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
+  selector: 'app-login',
+  templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
-  model: {
-    lastName: string;
-    birthDate: string;
-    postCode: string;
-  } = {
-    lastName: "",
-    birthDate: "",
-    postCode: "",
-  };
-  loading: boolean;
+export class LoginComponent {
+
+  email: string;
+  loading = false;
 
   constructor(private sharedService: SharedService) {}
 
-  ngOnInit(): void {}
+  register() {
+    this.sharedService.navigate([routes.auth.register]);
+  }
 
   continue() {
     this.loading = true;
 
     setTimeout(() => {
       this.loading = false;
-      this.sharedService.save(this.model);
-      this.sharedService.navigate([routes.auth.profile]);
-    }, 3000);
+      this.sharedService.save({email: this.email});
+      this.sharedService.navigate([routes.home.dashboard]);
+    }, 2000);
   }
 }

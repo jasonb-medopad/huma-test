@@ -1,7 +1,11 @@
 export const routes = {
   auth: {
     login: 'auth/login',
-    profile: 'auth/profile',
+    register: 'auth/register',
   },
-  home: 'home',
+  home: {
+    dashboard: 'home/dashboard',
+    profile: 'home/profile',
+    messages: 'home/messages',
+  },
 };

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
@@ -13,15 +13,19 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    component: AuthComponent,
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login',
+      },
       {
         path: 'login',
         component: LoginComponent,
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
+        path: 'register',
+        component: RegisterComponent,
       },
     ],
   },
@@ -29,7 +33,25 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-  },
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        component: ProfileComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'messages',
+        component: ProfileComponent,
+      }]
+  }
 ];
 
 @NgModule({

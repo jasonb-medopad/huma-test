@@ -3,9 +3,14 @@
 @import "./theme/color";
 @import "./theme/font";
 @import "./theme/button";
+@import "./theme/panel";
 @import "./theme/common";
 
 @import "./theme/components/form-field.component.scss";
+@import "./theme/components/checkbox.component.scss";
+@import "./theme/components/auth.component.scss";
+@import "./theme/components/home.component.scss";
+@import "./theme/components/profile.component.scss";
 
 html,
 body {
@@ -15,5 +20,4 @@ body {
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  @extend .bg-light;
 }

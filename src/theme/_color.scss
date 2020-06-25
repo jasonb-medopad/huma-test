@@ -1,25 +1,53 @@
 $colors: (
-  primary: rgb(113, 93, 235),
-  secondary: rgb(186, 161, 65),
-  danger: rgb(194, 5, 0),
-  light: rgba(251, 251, 252),
-  medium: rgba(200, 200, 200),
-  dark: rgba(28, 28, 28),
-  white: rgb(255, 255, 255),
+  primary: (
+    color: rgb(113, 93, 235),
+    contrast: white,
+  ),
+  secondary: (
+    color: rgb(186, 161, 65),
+    contrast: white,
+  ),
+  link: (
+    color: rgb(84, 145, 220),
+    contrast: white,
+  ),
+  danger: (
+    color: rgb(194, 5, 0),
+    contrast: white,
+  ),
+  light: (
+    color: rgb(251, 251, 252),
+    contrast: black,
+  ),
+  medium: (
+    color: rgb(177, 176, 176),
+    contrast: white,
+  ),
+  dark: (
+    color: rgb(28, 28, 28),
+    contrast: white,
+  ),
+  white: (
+    color: rgb(255, 255, 255),
+    contrast: black,
+  ),
 );
 
 @each $name, $color in $colors {
-  @if type-of($color) != "map" {
-    .text-#{$name} {
-      color: $color;
-    }
+  .text-#{$name} {
+    color: map-get($color, color) !important;
+  }
 
-    .bg-#{$name} {
-      background-color: $color;
-    }
+  .bg-#{$name} {
+    background-color: map-get($color, color) !important;
+  }
 
-    .border-#{$name} {
-      border-color: $color;
-    }
+  .bg-contrast-#{$name} {
+    background-color: map-get($color, color) !important;
+    color: map-get($color, contrast) !important;
+  }
+
+  .border-#{$name} {
+    border-color: map-get($color, color) !important;
   }
 }

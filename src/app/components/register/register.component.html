@@ -1,0 +1,71 @@
+<div class="wrapper">
+  <div class="container">
+    <img src="assets/logo.png" alt="logo" />
+
+    <div class="page-container">
+
+      <div class="header">
+        <div class="h6">Create your huma medopad account</div>
+
+        <button custom-button fill="text" color="medium" (click)="back()">
+          <i class="icon-arrow-left mr-15"></i> Back to log in
+        </button>
+      </div>
+
+      <form #form="ngForm" class="content">
+
+        <form-field>
+          <input inputRef name="firstName" #firstNameInput="ngModel" placeholder="Enter you firstname"
+            [(ngModel)]="model.firstName" required>
+          <div error>
+            <p *ngIf="firstNameInput?.errors?.required">this field is required</p>
+          </div>
+        </form-field>
+
+        <form-field>
+          <input inputRef name="lastName" #lastNameInput="ngModel" placeholder="Enter your lastname"
+            [(ngModel)]="model.lastName" required>
+          <div error>
+            <p *ngIf="lastNameInput?.errors?.required">this field is required</p>
+          </div>
+        </form-field>
+
+        <form-field>
+          <input inputRef name="email" #emailInput="ngModel" placeholder="Enter your Email" [(ngModel)]="model.email"
+            required email aria-labelledby="email-label" aria-required="true">
+          <div error>
+            <p *ngIf="emailInput?.errors?.required">this field is required</p>
+            <p *ngIf="emailInput?.errors?.email">this field must be a valid email</p>
+          </div>
+        </form-field>
+
+        <form-field>
+          <input inputRef type="password" name="password" #passwordInput="ngModel" placeholder="Enter your Password"
+            [(ngModel)]="model.password" required password>
+          <div error>
+            <p *ngIf="passwordInput?.errors?.required">this field is required</p>
+          </div>
+        </form-field>
+
+        <form-field>
+          <input inputRef type="password" name="rpassword" #rpasswordInput="ngModel" placeholder="Confirm your Password"
+            [(ngModel)]="model.rpassword">
+        </form-field>
+
+        <form-field>
+          <input inputRef type="tel" name="tel" #telInput="ngModel" placeholder="Mobile Phone" [(ngModel)]="model.tel">
+        </form-field>
+
+        <app-checkbox label="I have read & accept Medopad's End User License Agreement and privacy Policy">
+          <input type="checkbox" inputRef name="acceptTC" [(ngModel)]="model.acceptTC" required>
+        </app-checkbox>
+
+        <button class="mt-15" custom-button shape="round" expand="block" color="primary" [status]="loading"
+          [disabled]="form.invalid" (click)="continue()">
+          Continue <i class="icon-arrow-right"></i>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+app-profile {
+  display: block;
+  & > .header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    @extend .border-medium;
+    padding: 30px 20px;
+    display: flex;
+    & > .profile_section {
+      flex: 1;
+      padding: 0 20px;
+    }
+    & > :last-child {
+      border-left-width: 1px;
+      border-left-style: solid;
+      @extend .border-medium;
+    }
+  }
+  & > .content {
+    padding: 40px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+  }
+}

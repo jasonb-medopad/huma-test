@@ -1,0 +1,17 @@
+.panel {
+  border: 1px solid;
+  height: fit-content;
+  @extend .border-medium;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid;
+    @extend .border-medium;
+  }
+
+  &__header,
+  &__content {
+    padding: 10px 20px;
+  }
+}

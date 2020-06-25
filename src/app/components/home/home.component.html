@@ -1,6 +1,28 @@
-<p class="h1">Welcome Home,</p>
+<div class="grid-container" *ngIf="user$ | async as user">
+  <header class="header">
+    <div class="start">
+      <button custom-button iconButton="true" color="dark" fill="none" (click)="sidenav.classList.toggle('open')">
+        <i class="icon-arrow-left"></i>
+      </button>
+      <p class="h6 ml-10 mr-10 hidden-sm">Overview of</p>
+      <button class="hidden-sm" custom-button shape="round" fill="outline" size="small" color="medium">
+        {{user.firstName[0]}}. {{user.lastName}} <i class="icon-arrow-down ml-10"></i>
+      </button>
+    </div>
+    <button custom-button shape="round" fill="outline" size="small" color="medium">
+      AM <i class="icon-options-vertical ml-10"></i>
+    </button>
+  </header>
+  <aside class="sidenav" #sidenav>
+    <img src="assets/logo.png" alt="" width="70px">
 
-<div class="profile bg-white">
-  <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="profile image">
-  <p class="h4" *ngIf="user">Mr {{user.lastName}}</p>
+    <div class="menu">
+      <div class="nav-link" *ngFor="let item of menu" [routerLink]="item.route" routerLinkActive="active">
+        <i class="icon-{{item.icon}}"></i>
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
 </div>
