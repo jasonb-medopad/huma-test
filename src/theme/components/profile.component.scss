@@ -4,11 +4,10 @@ app-profile {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     @extend .border-medium;
-    padding: 30px 20px;
     display: flex;
     & > .profile_section {
       flex: 1;
-      padding: 0 20px;
+      padding: 2.5em 2.2em;
     }
     & > :last-child {
       border-left-width: 1px;

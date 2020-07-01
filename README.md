@@ -34,7 +34,7 @@ also allows to add prefix and suffix elements. see example
 #### example
 
 ```html
-<form-field mode="bootstrap>
+<form-field mode="bootstrap">
   <i prefix class="icon-envelop"></i>
   <i suffix class="icon-user"></i>
   <input inputRef name="lastname" #lastNameInput="ngModel" placeholder="Email" [(ngModel)]="email" required email />
