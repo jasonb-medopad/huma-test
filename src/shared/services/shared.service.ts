@@ -4,6 +4,7 @@ import { Params, Router } from '@angular/router';
 import { User } from '@shared/models/user';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ export class SharedService {
   get user(): any {
     return this.userData;
   }
+
+  reasonChange: Subject<string> = new Subject<string>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -51,4 +54,9 @@ export class SharedService {
   randomNumber(max: number) {
     return Math.floor(Math.random() * max);
   }
+
+  updateReasonForMonitoring(reason: string) {
+    this.reasonChange.next(reason);
+  }
+
 }

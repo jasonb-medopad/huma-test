@@ -15,8 +15,16 @@
     </div>
 
     <div class="mt-35">
-      <button class="mr-5" custom-button size="small" color="medium" fill="flat">Smoker</button>
-      <button custom-button size="small" color="medium" fill="flat">Drinker</button>
+      <button
+        *ngFor="let condition of possibleConditions"
+        (click)="onConditionClick(condition)"
+        class="mr-5"
+        custom-button
+        size="small"
+        color="medium"
+        fill="flat">
+        {{condition}}
+      </button>
     </div>
   </div>
 
@@ -105,7 +113,7 @@
   <!-- panel 3 clinical history -->
   <div class="panel">
     <div class="panel__header">
-      <span class="h6">Climical History</span>
+      <span class="h6">Clinical History</span>
       <button iconButton="true" custom-button color="primary" fill="text"> <i class="icon-options"></i></button>
     </div>
 
