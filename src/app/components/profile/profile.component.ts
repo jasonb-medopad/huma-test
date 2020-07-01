@@ -16,8 +16,10 @@ export class ProfileComponent implements OnInit {
     specialist: '',
     date: ''
   };
+  reasonUpdated = false;
   doctors$: Observable<User>;
   reasonSub$: Subscription;
+  REASON_STYLE_TIMEOUT = 500;
 
   possibleConditions: string[] = [
     'Smoker',
@@ -32,6 +34,10 @@ export class ProfileComponent implements OnInit {
   ) {
     this.reasonSub$ = sharedService.reasonChange.subscribe((value) => {
       this.extraData.reason = value;
+      this.reasonUpdated = true;
+      setTimeout(() => {
+        this.reasonUpdated = false;
+      }, this.REASON_STYLE_TIMEOUT);
     });
    }
 

@@ -121,7 +121,7 @@
 
       <p prefix class="mb-10 paragraph-small"> Reason for monitoring:</p>
       <form-field>
-        <input inputRef name="address" [(ngModel)]="extraData.reason" />
+        <input [ngClass]="{'green-fade': reasonUpdated}" inputRef name="address" [(ngModel)]="extraData.reason" />
       </form-field>
 
       <div class="row align-center form-group">

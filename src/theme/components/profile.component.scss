@@ -23,3 +23,19 @@ app-profile {
     gap: 20px;
   }
 }
+
+@keyframes green-fade-out {
+  from {
+    background-color: rgba(0, 167, 0, 0.2);
+    font-weight: bold;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.0);
+    font-weight: normal;
+  }
+}
+
+.green-fade {
+  animation-name: green-fade-out;
+  animation-duration: 1s;
+}
