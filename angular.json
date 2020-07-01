@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "huma"
+  "defaultProject": "huma",
+  "cli": {
+    "analytics": "41b84e33-5512-4997-b5c5-6931403ce122"
+  }
 }
